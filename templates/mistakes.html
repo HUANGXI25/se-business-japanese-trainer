@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}错题本 | Business Japanese SE Roleplay Trainer{% endblock %}
+
+{% block content %}
+<section class="page-heading">
+    <div>
+        <p class="eyebrow">错题本</p>
+        <h1>低分回答回顾</h1>
+    </div>
+</section>
+
+<section class="panel">
+    {% if mistake_rows %}
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>时间</th>
+                    <th>场景</th>
+                    <th>轮次</th>
+                    <th>原回答</th>
+                    <th>低分维度</th>
+                    <th>问题标签</th>
+                    <th>推荐表达</th>
+                    <th>复练入口</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in mistake_rows %}
+                <tr>
+                    <td>{{ row.mistake.created_at.strftime('%Y-%m-%d %H:%M') if row.mistake.created_at else '' }}</td>
+                    <td>{{ row.mistake.scenario_title }}</td>
+                    <td>{{ row.mistake.turn_number }}</td>
+                    <td>{{ row.mistake.user_response }}</td>
+                    <td>{{ row.mistake.low_dimensions }}</td>
+                    <td>{{ row.mistake.issue_tags }}</td>
+                    <td>{{ row.mistake.recommended_expression }}</td>
+                    <td>
+                        <div class="link-stack">
+                            <a class="button secondary" href="/mistakes/{{ row.mistake.id }}/retry?mode=learning">从该轮复练</a>
+                            <a class="button secondary" href="/mistakes/{{ row.mistake.id }}/retry?mode=practice">该轮实战重答</a>
+                            {% if row.scenario_id %}
+                            <a class="button secondary" href="/scenarios/{{ row.scenario_id }}/mode">重开该场景</a>
+                            {% endif %}
+                            {% if row.source_session and not row.source_session.is_completed %}
+                            <a class="button secondary" href="/train/{{ row.source_session.id }}">回到原场景继续练</a>
+                            {% endif %}
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="empty-state">还没有错题记录。先完成几轮训练再来查看。</div>
+    {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}训练中 | Business Japanese SE Roleplay Trainer{% endblock %}
+
+{% block content %}
+<section class="page-heading">
+    <div>
+        <p class="eyebrow">对话训练</p>
+        <h1>{{ scenario.title }}</h1>
+        <p class="lead">{{ scenario.description }}</p>
+    </div>
+    <div class="chip-row">
+        <span class="chip">{{ mode_labels.get(session.mode, session.mode) }}</span>
+        <span class="chip muted">{{ difficulty_labels.get(session.difficulty, session.difficulty) }}</span>
+        <span class="chip muted">{{ category_labels.get(session.category, session.category) }}</span>
+    </div>
+</section>
+
+<section class="training-layout" id="training-app" data-session-id="{{ session.id }}">
+    <div class="panel">
+        <div class="training-meta">
+            <span id="progress-text">加载中...</span>
+        </div>
+        <div class="prompt-box">
+            <p class="prompt-label">对方的话</p>
+            <p id="speaker-line" class="speaker-line">正在获取当前轮次...</p>
+        </div>
+        <div id="hint-panel" class="hint-panel hidden">
+            <h3>学习提示</h3>
+            <div class="hint-block">
+                <strong>第一层：该轮任务拆解</strong>
+                <p id="task-label" class="subtle"></p>
+                <ul id="task-breakdown-list" class="clean-list"></ul>
+            </div>
+            <div class="hint-block">
+                <strong>第二层：关键词提示</strong>
+                <div id="keyword-list" class="chip-row"></div>
+            </div>
+            <div class="hint-block">
+                <strong>第三层：句式骨架</strong>
+                <ul id="frame-list" class="clean-list"></ul>
+            </div>
+            <details id="reference-details" class="hint-block hidden">
+                <summary>查看参考表达</summary>
+                <ul id="reference-list" class="clean-list"></ul>
+            </details>
+        </div>
+        <div id="practice-note" class="hint-panel hidden">
+            <h3 id="hint-note-title">当前提示已收起</h3>
+            <p id="hint-note-text" class="subtle">请先自行组织回答，再根据反馈调整表达。</p>
+        </div>
+        <form id="response-form" class="response-form">
+            <label for="response-text">你的日语回复</label>
+            <textarea id="response-text" rows="6" placeholder="请输入你的日语回复"></textarea>
+            <div class="form-actions">
+                <button class="button primary" type="submit">提交本轮回答</button>
+                <button class="button secondary hidden" type="button" id="next-button">进入下一轮</button>
+            </div>
+        </form>
+    </div>
+
+    <aside class="panel feedback-panel">
+        <h2>结果反馈</h2>
+        <div id="feedback-empty" class="empty-state">提交回答后，这里会显示评分、纠错和推荐表达。</div>
+        <div id="feedback-body" class="hidden">
+            <div class="score-total">
+                <span>总分</span>
+                <strong id="total-score"></strong>
+            </div>
+            <p id="summary-text"></p>
+            <p id="detail-text" class="subtle"></p>
+
+            <div id="score-grid" class="score-grid"></div>
+            <div id="dimension-feedback" class="dimension-feedback"></div>
+
+            <section class="feedback-section">
+                <h3>命中问题片段</h3>
+                <div id="fragment-issue-list" class="fragment-issue-list"></div>
+            </section>
+
+            <section class="feedback-section">
+                <h3>第一层：指出问题</h3>
+                <ul id="issue-list" class="clean-list"></ul>
+            </section>
+            <section class="feedback-section">
+                <h3>第二层：修改建议</h3>
+                <ul id="suggestion-list" class="clean-list"></ul>
+            </section>
+            <section class="feedback-section">
+                <h3>推荐表达</h3>
+                <div class="rewrite-card">
+                    <p><strong>适用对象：</strong><span id="listener-label"></span></p>
+                    <p><strong>更合适的表达：</strong><span id="recommended-expression"></span></p>
+                    <p class="subtle" id="recommendation-note"></p>
+                </div>
+            </section>
+            <details id="feedback-reference-details" class="feedback-section hidden">
+                <summary>查看参考表达对照卡片</summary>
+                <ul id="feedback-reference-list" class="clean-list"></ul>
+            </details>
+            <p id="status-note" class="status-note"></p>
+        </div>
+    </aside>
+</section>
+{% endblock %}

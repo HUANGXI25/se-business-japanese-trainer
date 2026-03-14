@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}设置 | Business Japanese SE Roleplay Trainer{% endblock %}
+
+{% block content %}
+<section class="page-heading">
+    <div>
+        <p class="eyebrow">设置</p>
+        <h1>训练默认设置</h1>
+        <p class="lead">界面说明固定为中文，训练内容为日语。</p>
+    </div>
+</section>
+
+<section class="panel">
+    <form class="settings-form" method="post" action="/settings">
+        <label>
+            默认模式
+            <select name="default_mode">
+                <option value="learning" {% if settings.default_mode == "learning" %}selected{% endif %}>学习模式</option>
+                <option value="practice" {% if settings.default_mode == "practice" %}selected{% endif %}>实战模式</option>
+            </select>
+        </label>
+        <label>
+            默认难度筛选
+            <select name="difficulty_filter">
+                <option value="all" {% if settings.difficulty_filter == "all" %}selected{% endif %}>全部</option>
+                <option value="easy" {% if settings.difficulty_filter == "easy" %}selected{% endif %}>初级</option>
+                <option value="medium" {% if settings.difficulty_filter == "medium" %}selected{% endif %}>中级</option>
+                <option value="hard" {% if settings.difficulty_filter == "hard" %}selected{% endif %}>高级</option>
+            </select>
+        </label>
+        <label class="checkbox">
+            <input type="checkbox" name="show_hints" {% if settings.show_hints %}checked{% endif %}>
+            学习模式默认显示任务拆解、关键词与句式骨架
+        </label>
+        <label class="checkbox">
+            <input type="checkbox" name="save_low_scores" {% if settings.save_low_scores %}checked{% endif %}>
+            保存低分回答到错题本
+        </label>
+        <label>
+            错题本保存阈值（总分小于等于该值）
+            <input type="number" name="low_score_threshold" min="10" max="50" value="{{ settings.low_score_threshold }}">
+        </label>
+        <button class="button primary" type="submit">保存设置</button>
+    </form>
+</section>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}场景列表 | Business Japanese SE Roleplay Trainer{% endblock %}
+
+{% block content %}
+<section class="page-heading">
+    <div>
+        <p class="eyebrow">场景库</p>
+        <h1>选择一个 SE 商务日语场景</h1>
+    </div>
+    <form class="filter-bar" method="get" action="/scenarios">
+        <label>
+            难度
+            <select name="difficulty">
+                <option value="all" {% if difficulty == "all" %}selected{% endif %}>全部</option>
+                <option value="easy" {% if difficulty == "easy" %}selected{% endif %}>初级</option>
+                <option value="medium" {% if difficulty == "medium" %}selected{% endif %}>中级</option>
+                <option value="hard" {% if difficulty == "hard" %}selected{% endif %}>高级</option>
+            </select>
+        </label>
+        <label>
+            分类
+            <select name="category">
+                <option value="all" {% if category == "all" %}selected{% endif %}>全部</option>
+                {% for item in categories %}
+                <option value="{{ item }}" {% if category == item %}selected{% endif %}>{{ category_labels.get(item, item) }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <button class="button secondary" type="submit">筛选</button>
+    </form>
+</section>
+
+<section class="scenario-grid">
+    {% for scenario in scenarios %}
+    <article class="panel scenario-card">
+        <div class="chip-row">
+            <span class="chip">{{ difficulty_labels.get(scenario.difficulty, scenario.difficulty) }}</span>
+            <span class="chip muted">{{ category_labels.get(scenario.category, scenario.category) }}</span>
+        </div>
+        <h2>{{ scenario.title }}</h2>
+        <p>{{ scenario.description }}</p>
+        <p class="subtle">共 {{ scenario.turns | length }} 轮</p>
+        <a class="button primary" href="/scenarios/{{ scenario.id }}/mode">选择模式</a>
+    </article>
+    {% endfor %}
+</section>
+{% endblock %}

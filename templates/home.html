@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}首页 | Business Japanese SE Roleplay Trainer{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div>
+        <p class="eyebrow">日本新卒 SE 商务日语训练</p>
+        <h1>逐轮对话训练，专注入社后的真实工作沟通</h1>
+        <p class="lead">
+            本地可运行的 Web MVP，覆盖进度汇报、需求确认、问题汇报、日程协调、升级汇报等典型场景。
+        </p>
+        <div class="hero-actions">
+            <a class="button primary" href="/scenarios">开始训练</a>
+            <a class="button secondary" href="/analytics">查看弱点分析</a>
+        </div>
+    </div>
+    <div class="panel hero-stats">
+        <div class="stat-card">
+            <span class="stat-label">内置场景</span>
+            <strong>{{ scenario_count }}</strong>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">已完成训练</span>
+            <strong>{{ completed_count }}</strong>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">场景分类</span>
+            <strong>{{ categories | length }}</strong>
+        </div>
+    </div>
+</section>
+
+<section class="grid two-columns">
+    <article class="panel">
+        <h2>你可以练什么</h2>
+        <ul class="clean-list">
+            <li>向上司汇报进度、风险、延期原因</li>
+            <li>向客户确认需求、说明临时变更影响</li>
+            <li>在会议中发言、迟到说明、礼貌追问</li>
+            <li>团队内部请求协助、共享问题、请求代码审阅</li>
+        </ul>
+    </article>
+    <article class="panel">
+        <h2>训练方式</h2>
+        <ul class="clean-list">
+            <li>学习模式：显示提示、关键词和参考表达，反馈更温和</li>
+            <li>实战模式：默认隐藏提示，评分更严格，低分时需要重答</li>
+            <li>每轮给出评分、纠错、推荐表达，并自动写入记录</li>
+        </ul>
+    </article>
+</section>
+{% endblock %}

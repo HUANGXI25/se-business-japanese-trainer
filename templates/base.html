@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Business Japanese SE Roleplay Trainer{% endblock %}</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="/" class="brand">Business Japanese SE Roleplay Trainer</a>
+            <nav class="nav">
+                <a href="/scenarios">场景库</a>
+                <a href="/records">练习记录</a>
+                <a href="/mistakes">错题本</a>
+                <a href="/analytics">弱点分析</a>
+                <a href="/settings">设置</a>
+            </nav>
+        </div>
+    </header>
+    <main class="page-shell">
+        {% block content %}{% endblock %}
+    </main>
+    <script src="/static/app.js"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

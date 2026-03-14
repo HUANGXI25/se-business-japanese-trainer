@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}模式选择 | Business Japanese SE Roleplay Trainer{% endblock %}
+
+{% block content %}
+<section class="page-heading">
+    <div>
+        <p class="eyebrow">模式选择</p>
+        <h1>{{ scenario.title }}</h1>
+        <p class="lead">{{ scenario.description }}</p>
+    </div>
+</section>
+
+<section class="grid two-columns">
+    <article class="panel">
+        <h2>学习模式</h2>
+        <ul class="clean-list">
+            <li>默认显示任务拆解、关键词提示和句式骨架</li>
+            <li>参考表达改为折叠查看，避免直接照抄</li>
+            <li>反馈更温和，便于逐步打磨商务表达</li>
+            <li>即使回答一般，也可以继续进入下一轮</li>
+        </ul>
+        <form method="post" action="/scenarios/{{ scenario.id }}/start">
+            <input type="hidden" name="mode" value="learning">
+            <button class="button primary" type="submit">以学习模式开始</button>
+        </form>
+    </article>
+    <article class="panel">
+        <h2>实战模式</h2>
+        <ul class="clean-list">
+            <li>默认不显示学习提示，先答后评</li>
+            <li>对敬语、商务表达和场景适配更严格</li>
+            <li>低于阈值时不会进入下一轮，需要重答</li>
+        </ul>
+        <form method="post" action="/scenarios/{{ scenario.id }}/start">
+            <input type="hidden" name="mode" value="practice">
+            <button class="button primary" type="submit">以实战模式开始</button>
+        </form>
+    </article>
+</section>
+{% endblock %}

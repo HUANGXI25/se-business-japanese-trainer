@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}弱点分析 | Business Japanese SE Roleplay Trainer{% endblock %}
+
+{% block content %}
+<section class="page-heading">
+    <div>
+        <p class="eyebrow">弱点分析</p>
+        <h1>基于历史记录的简版统计</h1>
+    </div>
+</section>
+
+<section class="grid two-columns">
+    <article class="panel">
+        <h2>维度平均分</h2>
+        {% if analysis.average_scores %}
+        <div class="score-grid">
+            {% for label, value in analysis.average_scores.items() %}
+            <div class="score-card">
+                <span>{{ label }}</span>
+                <strong>{{ value }}</strong>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-state">暂无数据</div>
+        {% endif %}
+    </article>
+    <article class="panel">
+        <h2>常见薄弱点</h2>
+        <ul class="clean-list">
+            {% for weakness in analysis.weaknesses %}
+            <li>{{ weakness }}</li>
+            {% endfor %}
+        </ul>
+    </article>
+</section>
+
+<section class="grid two-columns">
+    <article class="panel">
+        <h2>常见问题标签</h2>
+        {% if analysis.top_issue_tags %}
+        <ul class="clean-list">
+            {% for tag, count in analysis.top_issue_tags %}
+            <li>{{ tag }}：{{ count }} 次</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <div class="empty-state">暂无标签统计</div>
+        {% endif %}
+    </article>
+    <article class="panel">
+        <h2>模式使用情况</h2>
+        {% if analysis.mode_breakdown %}
+        <ul class="clean-list">
+            {% for mode, count in analysis.mode_breakdown.items() %}
+            <li>{{ mode }}：{{ count }} 轮</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <div class="empty-state">暂无模式数据</div>
+        {% endif %}
+    </article>
+</section>
+{% endblock %}

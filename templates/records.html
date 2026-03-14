@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}练习记录 | Business Japanese SE Roleplay Trainer{% endblock %}
+
+{% block content %}
+<section class="page-heading">
+    <div>
+        <p class="eyebrow">练习记录</p>
+        <h1>历史训练记录</h1>
+    </div>
+</section>
+
+<section class="panel">
+    {% if session_rows %}
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>开始时间</th>
+                    <th>场景</th>
+                    <th>模式</th>
+                    <th>各轮得分</th>
+                    <th>总分</th>
+                    <th>平均分</th>
+                    <th>完成状态</th>
+                    <th>尝试次数</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in session_rows %}
+                <tr>
+                    <td>{{ row.session.started_at.strftime('%Y-%m-%d %H:%M') if row.session.started_at else '' }}</td>
+                    <td>{{ row.session.scenario_title }}</td>
+                    <td>{{ row.session.mode }}</td>
+                    <td>{{ row.turn_scores | join(' / ') if row.turn_scores else '-' }}</td>
+                    <td>{{ row.session.total_score }}</td>
+                    <td>{{ row.session.average_score }}</td>
+                    <td>{{ '已完成' if row.session.is_completed else '进行中' }}</td>
+                    <td>{{ row.attempt_count }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="empty-state">还没有训练记录。</div>
+    {% endif %}
+</section>
+{% endblock %}
