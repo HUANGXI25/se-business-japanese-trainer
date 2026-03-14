@@ -190,17 +190,16 @@ http://127.0.0.1:8000
 ## 截图
 
 ### Homepage
-![首页总览，展示项目定位和入口导航](docs/images/readme/home-overview.png)
+![首页总览，展示项目定位和入口导航](docs/images/readme/01-home-overview.png)
 
 ### Scenario Library
-![场景库页面，展示内置 SE 商务日语场景列表](docs/images/readme/scenario-library.png)
+![场景库页面，展示内置 SE 商务日语场景列表](docs/images/readme/02-scenario-library.png)
 
 ### Training Feedback
-![训练页，展示逐轮输入、评分反馈和推荐表达](docs/images/readme/training-feedback.png)
+![训练页，展示逐轮输入、评分反馈和推荐表达](docs/images/readme/03-training-feedback.png)
 
 ### Analytics
-![弱点分析页面，展示历史统计与常见薄弱点](docs/images/readme/analytics-overview.png)
-
+![弱点分析页面，展示历史统计与常见薄弱点](docs/images/readme/04-analytics-overview.png)
 ## 许可证
 
 本项目使用 MIT License。
