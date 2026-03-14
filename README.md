@@ -39,6 +39,20 @@ A local-first, explainable, and extensible trainer for practicing Japanese busin
 - 错题本、练习记录、弱点分析
 - 无需依赖外部付费 API 的本地运行能力
 
+## 截图
+
+### Homepage
+![首页总览，展示项目定位和入口导航](docs/images/readme/01-home-overview.png)
+
+### Scenario Library
+![场景库页面，展示内置 SE 商务日语场景列表](docs/images/readme/02-scenario-library.png)
+
+### Training Feedback
+![训练页，展示逐轮输入、评分反馈和推荐表达](docs/images/readme/03-training-feedback.png)
+
+### Analytics
+![弱点分析页面，展示历史统计与常见薄弱点](docs/images/readme/04-analytics-overview.png)
+
 ## 为什么是“本地优先、可解释、可扩展”
 
 ### 本地优先
@@ -187,19 +201,6 @@ http://127.0.0.1:8000
 - 发布前检查：`docs/release-checklist.md`
 - 版本记录：`CHANGELOG.md`
 
-## 截图
-
-### Homepage
-![首页总览，展示项目定位和入口导航](docs/images/readme/01-home-overview.png)
-
-### Scenario Library
-![场景库页面，展示内置 SE 商务日语场景列表](docs/images/readme/02-scenario-library.png)
-
-### Training Feedback
-![训练页，展示逐轮输入、评分反馈和推荐表达](docs/images/readme/03-training-feedback.png)
-
-### Analytics
-![弱点分析页面，展示历史统计与常见薄弱点](docs/images/readme/04-analytics-overview.png)
 ## 许可证
 
 本项目使用 MIT License。
